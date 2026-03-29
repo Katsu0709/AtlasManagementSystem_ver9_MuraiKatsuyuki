@@ -7,95 +7,61 @@ $(function () {
   });
 
   $(document).on('click keyup change', function () {
+
     var over_name = $('.over_name').val().length;
-    if (over_name >= 1) {
-      $('.over_name').addClass('success_name');
-    } else {
-      $('.over_name').removeClass('success_name');
-    }
+    $('.over_name').toggleClass('success_name', over_name >= 1);
 
     var over_name_kana = $('.over_name_kana').val().length;
-    if (over_name_kana >= 1) {
-      $('.over_name_kana').addClass('success_name_kana');
-    } else {
-      $('.over_name_kana').removeClass('success_name_kana');
-    }
+    $('.over_name_kana').toggleClass('success_name_kana', over_name_kana >= 1);
 
     var under_name = $('.under_name').val().length;
-    if (under_name >= 1) {
-      $('.under_name').addClass('success_under_name');
-    } else {
-      $('.under_name').removeClass('success_under_name');
-    }
+    $('.under_name').toggleClass('success_under_name', under_name >= 1);
 
     var under_name_kana = $('.under_name_kana').val().length;
-    if (under_name_kana >= 1) {
-      $('.under_name_kana').addClass('success_under_name_kana');
-    } else {
-      $('.under_name_kana').removeClass('success_under_name_kana');
-    }
+    $('.under_name_kana').toggleClass('success_under_name_kana', under_name_kana >= 1);
 
     var mail_address = $('.mail_address').val().length;
-    if (mail_address >= 1) {
-      $('.mail_address').addClass('success_mail_address');
-    } else {
-      $('.mail_address').removeClass('success_mail_address');
-    }
+    $('.mail_address').toggleClass('success_mail_address', mail_address >= 1);
 
     var password = $('.password').val().length;
-    if (password >= 1) {
-      $('.password').addClass('success_password');
-    } else {
-      $('.password').removeClass('success_password');
-    }
+    $('.password').toggleClass('success_password', password >= 1);
 
     var password_confirm = $('.password_confirmation').val().length;
-    if (password_confirm >= 1) {
-      $('.password_confirmation').addClass('success_password_confirm');
-    } else {
-      $('.password_confirmation').removeClass('success_password_confirm');
-    }
+    $('.password_confirmation').toggleClass('success_password_confirm', password_confirm >= 1);
 
     var sex = $('input:radio[name="sex"]:checked').val();
-    if (sex > 0) {
-      $('.sex').addClass('success_sex');
-    } else {
-      $('.sex').removeClass('success_sex');
-    }
+    $('.sex').toggleClass('success_sex', sex > 0);
 
-    var old_year = $('.old_year').val();
-    if (old_year !== 'none') {
-      $('.old_year').addClass('success_year');
-    } else {
-      $('.old_year').removeClass('success_year');
-    }
 
-    var old_month = $('.old_month').val();
-    if (old_month !== 'none') {
-      $('.old_month').addClass('success_month');
-    } else {
-      $('.old_month').removeClass('success_month');
-    }
+    var old_year = $('select[name="old_year"]').val();
+    $('select[name="old_year"]').toggleClass('success_year', old_year !== 'none');
 
-    var old_day = $('.old_day').val();
-    if (old_day !== 'none') {
-      $('.old_day').addClass('success_day');
-    } else {
-      $('.old_day').removeClass('success_day');
-    }
+    var old_month = $('select[name="old_month"]').val();
+    $('select[name="old_month"]').toggleClass('success_month', old_month !== 'none');
+
+    var old_day = $('select[name="old_day"]').val();
+    $('select[name="old_day"]').toggleClass('success_day', old_day !== 'none');
 
     var role = $('input:radio[name="role"]:checked').val();
-    if (role > 0) {
-      $('.role').addClass('success_role');
-    } else {
-      $('.role').removeClass('success_role');
-    }
+    $('.role').toggleClass('success_role', role > 0);
 
-    if ($('.over_name').hasClass('success_name') && $('.over_name_kana').hasClass('success_name_kana') && $('.under_name').hasClass('success_under_name') && $('.under_name_kana').hasClass('success_under_name_kana') && $('.mail_address').hasClass('success_mail_address') && $('.password').hasClass('success_password') && $('.password_confirmation').hasClass('success_password_confirm') && $('.sex').hasClass('success_sex') && $('.old_year').hasClass('success_year') && $('.old_month').hasClass('success_month') && $('.old_day').hasClass('success_day') && $('.role').hasClass('success_role')) {
+
+    if ($('.over_name').hasClass('success_name') &&
+      $('.over_name_kana').hasClass('success_name_kana') &&
+      $('.under_name').hasClass('success_under_name') &&
+      $('.under_name_kana').hasClass('success_under_name_kana') &&
+      $('.mail_address').hasClass('success_mail_address') &&
+      $('.password').hasClass('success_password') &&
+      $('.password_confirmation').hasClass('success_password_confirm') &&
+      $('.sex').hasClass('success_sex') &&
+      $('select[name="old_year"]').hasClass('success_year') &&
+      $('select[name="old_month"]').hasClass('success_month') &&
+      $('select[name="old_day"]').hasClass('success_day') &&
+      $('.role').hasClass('success_role')) {
+
       $('.register_btn').prop('disabled', false);
     } else {
       $('.register_btn').prop('disabled', true);
     }
   });
-
-})
+});

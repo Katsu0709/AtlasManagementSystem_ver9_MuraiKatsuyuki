@@ -8,6 +8,8 @@
 
     <title>AtlasBulletinBoard</title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
