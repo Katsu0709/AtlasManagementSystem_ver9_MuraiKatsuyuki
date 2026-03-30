@@ -18,18 +18,33 @@ li {
 
 /* サイドバー */
 .sidebar {
-  width: 150px;
+  width: 200px;
   height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
+  padding: 10px;
 }
 
 .main-container {
   width: 100%;
 }
 
-.sidebar p a {
-  color: #FFF;
+.sidebar a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.sidebar a:hover {
+  color: whitesmoke;
+}
+
+.sidebar .material-symbols-outlined {
+  color: white;
+  margin-right: 5px;
+  font-size: 25px;
 }
 
 /* トップページ */
