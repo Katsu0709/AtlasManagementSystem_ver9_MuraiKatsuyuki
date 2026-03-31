@@ -43,6 +43,11 @@
     <script src="{{ asset('js/bulletin.js') }}" rel="stylesheet"></script>
     <script src="{{ asset('js/user_search.js') }}" rel="stylesheet"></script>
     <script src="{{ asset('js/calendar.js') }}" rel="stylesheet"></script>
+    <script>
+        setTimeout(function() {
+            location.reload();
+        }, 15 * 60 * 1000);
+    </script>
 </body>
 
 </html>
