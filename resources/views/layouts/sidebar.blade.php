@@ -45,8 +45,8 @@
     <script src="{{ asset('js/calendar.js') }}" rel="stylesheet"></script>
     <script>
         setTimeout(function() {
-            location.reload();
-        }, 15 * 60 * 1000);
+            window.location.href = "{{ route('loginView')}}";
+        }, 14 * 60 * 1000);
     </script>
 </body>
 
