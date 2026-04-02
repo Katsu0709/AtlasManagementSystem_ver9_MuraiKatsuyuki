@@ -11,24 +11,29 @@ class Post extends Model
 
     protected $fillable = [
         'user_id',
+        'post_id',
         'post_title',
         'post',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\Users\User');
     }
 
-    public function postComments(){
+    public function postComments()
+    {
         return $this->hasMany('App\Models\Posts\PostComment');
     }
 
-    public function subCategories(){
-        // リレーションの定義
+    public function subCategories()
+    {
+        return $this->belongsTo(\App\Models\Categories\SubCategory::class, 'post_id');
     }
 
     // コメント数
-    public function commentCounts($post_id){
+    public function commentCounts($post_id)
+    {
         return Post::with('postComments')->find($post_id)->postComments();
     }
 }
