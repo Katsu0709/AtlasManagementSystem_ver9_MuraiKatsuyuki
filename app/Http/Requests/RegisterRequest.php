@@ -37,30 +37,40 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'over_name.required' => '姓は必ず入力してください。',
+            'over_name.required' => '名前は必ず入力してください。',
             'over_name.max' => '姓は10文字以内で入力してください。',
 
-            'under_name.required' => '名は必ず入力してください。',
+            'under_name.required' => '名前必ず入力してください。',
             'under_name.max' => '名は10文字以内で入力してください。',
 
-            'over_name_kana.required' => 'セイは必ず入力してください。',
+            'over_name_kana.required' => '名前は必ず入力してください。',
             'over_name_kana.regex' => 'セイはカタカナで入力してください。',
+            'over_name_kana.max'      => 'セイは30文字以内で入力してください。',
 
-            'under_name_kana.required' => 'メイは必ず入力してください。',
+            'under_name_kana.required' => '名前は必ず入力してください。',
             'under_name_kana.regex' => 'メイはカタカナで入力してください。',
+            'under_name_kana.max'      => 'メイは30文字以内で入力してください。',
 
-            'mail_address.required' => 'メールアドレスは必須です。',
-            'mail_address.email' => '正しいメールアドレスの形式で入力してください。',
+            'mail_address.required' => 'メールアドレスは必ず入力してください。',
+            'mail_address.email' => 'メール形式で入力してください。',
             'mail_address.unique' => 'このメールアドレスは既に登録されています。',
+            'mail.address.max' => 'メールアドレスは100文字以内で入力してください。',
 
             'password.required' => 'パスワードを設定してください。',
             'password.between' => 'パスワードは8文字以上30文字以内で入力してください。',
             'password.confirmed' => 'パスワードが一致しません。',
 
             'sex.required' => '性別を選択してください。',
+            'sex.in' => '正しい性別を選択してください。',
+
             'birth_day.date' => '正しい日付を選択してください。',
-            'birth_day.required' => '生年月日を選択してください。',
+            'birth_day.required' => '生年月日が未入力です。',
+            'birth_day.after_or_equal'  => '2000年1月1日以降の日付を入力してください。',
+            'birth_day.before_or_equal' => '今日以前の日付を入力してください。',
+
             'role.required' => '役職を選択してください。',
+            'role.in' => '正しい役職を選択してください。'
+
         ];
     }
 }
