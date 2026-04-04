@@ -56,12 +56,17 @@ class PostsController extends Controller
 
     public function postCreate(PostFormRequest $request)
     {
-        Post::create([
+        $post = Post::create([
             'user_id' => Auth::id(),
             'post_category_id' => $request->post_category_id,
             'post_title' => $request->post_title,
             'post' => $request->post_body,
         ]);
+
+        if ($request->sub_category_id) {
+            $post->subCategories()->attach($request->sub_category_id);
+        }
+
         return redirect()->route('post.show');
     }
 

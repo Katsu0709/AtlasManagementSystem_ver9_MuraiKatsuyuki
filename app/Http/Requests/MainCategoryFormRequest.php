@@ -30,6 +30,7 @@ class MainCategoryFormRequest extends FormRequest
             'main_category_name.string'   => '正しい形式で入力してください。',
             'main_category_name.max'      => 'メインカテゴリー名は100文字以内で入力してください。',
             'main_category_name.unique'   => 'そのカテゴリーは既に登録されています。',
+            'main_category_name.exists'   => '正しいメインカテゴリーを選択してください。',
         ];
     }
 }

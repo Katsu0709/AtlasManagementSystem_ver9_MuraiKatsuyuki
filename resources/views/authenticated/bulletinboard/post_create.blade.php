@@ -3,7 +3,7 @@
     <div class="post_create_area border w-50 m-5 p-5">
       <div class="">
         <p class="mb-0">カテゴリー</p>
-        <select class="w-100 rounded" name="post_category_id" form="postCreate">
+        <select class="w-100 rounded" name="sub_category_id" form="postCreate">
           <option value="" disabled selected>教科</option>
 
           @foreach($main_categories as $main_category)
