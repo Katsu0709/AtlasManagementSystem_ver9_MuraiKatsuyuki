@@ -46,7 +46,7 @@
     <script>
         setTimeout(function() {
             window.location.href = "{{ route('loginView')}}";
-        }, 14 * 60 * 1000);
+        }, 119 * 60 * 1000);
     </script>
 </body>
 
