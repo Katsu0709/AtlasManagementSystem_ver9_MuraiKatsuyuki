@@ -43,6 +43,7 @@ class Post extends Model
         return Post::with('postComments')->find($post_id)->postComments();
     }
 
+    // いいね数
     public function likes()
     {
         return $this->hasMany('App\Models\Posts\Like', 'like_post_id');
