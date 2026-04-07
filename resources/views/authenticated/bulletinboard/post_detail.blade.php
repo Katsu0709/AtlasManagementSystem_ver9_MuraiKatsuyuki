@@ -5,10 +5,25 @@
         <div class="p-3">
           <div class="detail_inner_head">
             <div>
+              @if($errors->has('post_title') || $errors->has('post_body'))
+              <div class="text-danger">
+                <ul class="mb-0">
+                  @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+              @endif
             </div>
             <div>
-              <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-              <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+              @if($post->user_id == Auth::id())
+              <span class="edit-modal-open btn btn-primary"
+                post_title="{{ $post->post_title }}"
+                post_body="{{ $post->post }}"
+                post_id="{{ $post->id }}">編集</span>
+
+              <span class="delete-modal-open btn btn-danger">削除</span>
+              @endif
             </div>
           </div>
 
@@ -20,8 +35,8 @@
             </p>
             <span class="ml-5">{{ $post->created_at }}</span>
           </div>
-          <div class="detsail_post_title">{{ $post->post_title }}</div>
-          <div class="mt-3 detsail_post">{{ $post->post }}</div>
+          <div class="detail_post_title">{{ $post->post_title }}</div>
+          <div class="mt-3 detail_post">{{ $post->post }}</div>
         </div>
         <div class="p-3">
           <div class="comment_container">
@@ -69,6 +84,21 @@
             <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
             <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
             <input type="submit" class="btn btn-primary d-block" value="編集">
+          </div>
+        </div>
+        {{ csrf_field() }}
+      </form>
+    </div>
+  </div>
+  <div class="modal js-modal-delete">
+    <div class="modal__bg js-modal-close"></div>
+    <div class="modal__content">
+      <form action="{{ route('post.delete', ['id' => $post->id]) }}" method="post">
+        <div class="w-100 text-center p-3">
+          <p>削除してよろしいですか？</p>
+          <div class="w-50 m-auto d-flex justify-content-around">
+            <a class="js-modal-close btn btn-secondary" href="">キャンセル</a>
+            <input type="submit" class="btn btn-danger" value="削除">
           </div>
         </div>
         {{ csrf_field() }}
