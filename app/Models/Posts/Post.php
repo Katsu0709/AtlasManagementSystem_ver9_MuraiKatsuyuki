@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    const UPDATED_AT = null;
-    const CREATED_AT = null;
+    // const UPDATED_AT = null;
+    // const CREATED_AT = null;
 
     protected $fillable = [
         'user_id',
@@ -15,6 +15,8 @@ class Post extends Model
         'post_title',
         'post',
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
 
     public function user()
     {
@@ -28,7 +30,6 @@ class Post extends Model
 
     public function subCategories()
     {
-
         return $this->belongsToMany(
             \App\Models\Categories\SubCategory::class,
             'post_sub_categories',

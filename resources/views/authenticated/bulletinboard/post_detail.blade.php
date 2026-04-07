@@ -1,46 +1,51 @@
 <x-sidebar>
   <div class="vh-100 d-flex">
     <div class="w-50 mt-5">
-      <div class="m-3 detail_container">
+      <div class="m-3 p-1 detail_container rounded-lg">
         <div class="p-3">
+          @if($errors->has('post_title') || $errors->has('post_body'))
+          <div class="text-danger">
+            <ul class="mb-0">
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
           <div class="detail_inner_head">
             <div>
-              @if($errors->has('post_title') || $errors->has('post_body'))
-              <div class="text-danger">
-                <ul class="mb-0">
-                  @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
+              <div class="m-1">
+                @foreach($post->subCategories as $subCategory)
+                <span class="badge badge-info p-2" style="font-size:1.0rem;">{{ $subCategory->sub_category }}</span>
+                @endforeach
               </div>
-              @endif
             </div>
             <div>
               @if($post->user_id == Auth::id())
-              <span class="edit-modal-open btn btn-primary"
+              <span class="edit-modal-open btn btn-primary py-1"
                 post_title="{{ $post->post_title }}"
                 post_body="{{ $post->post }}"
                 post_id="{{ $post->id }}">編集</span>
 
-              <span class="delete-modal-open btn btn-danger">削除</span>
+              <span class="delete-modal-open btn btn-danger py-1 mr-3">削除</span>
               @endif
             </div>
           </div>
 
-          <div class="contributor d-flex">
-            <p>
+          <div class="contributor d-flex justify-content-between align-center mt-1">
+            <p style="font-size: 1.1rem;">
               <span>{{ $post->user->over_name }}</span>
               <span>{{ $post->user->under_name }}</span>
               さん
             </p>
-            <span class="ml-5">{{ $post->created_at }}</span>
+            <span class="text-secondary mr-3" style="font-size: small;">{{ $post->created_at }}</span>
           </div>
-          <div class="detail_post_title">{{ $post->post_title }}</div>
-          <div class="mt-3 detail_post">{{ $post->post }}</div>
+          <div class="detail_post_title" style="font-size:1.2rem;">{{ $post->post_title }}</div>
+          <div class="mt-3 detail_post" style="font-size:1.1rem;">{{ $post->post }}</div>
         </div>
-        <div class="p-3">
+        <div class=" p-3">
           <div class="comment_container">
-            <span class="">コメント</span>
+            <span class="m-1">コメント</span>
             @foreach($post->postComments as $comment)
             <div class="comment_area border-top">
               <p>
@@ -55,15 +60,17 @@
       </div>
     </div>
     <div class="w-50 p-3">
-      <div class="comment_container border m-5">
+      <div class="comment_container border m-5 rounded-lg">
         <div class="comment_area p-3">
           @error('comment')
           <div class="text-danger">{{ $message }}</div>
           @enderror
-          <p class="m-0">コメントする</p>
-          <textarea class="w-100" name="comment" form="commentRequest"></textarea>
-          <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
-          <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
+          <p class="my-1">コメントする</p>
+          <textarea class="w-100 form-control" rows="12" name="comment" form="commentRequest"></textarea>
+          <div class="d-flex justify-content-end">
+            <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
+            <input type="submit" class="btn btn-primary px-3 my-2" form="commentRequest" value="投稿">
+          </div>
           <form action="{{ route('comment.create') }}" method="post" id="commentRequest">{{ csrf_field() }}</form>
         </div>
       </div>
@@ -92,7 +99,7 @@
   </div>
   <div class="modal js-modal-delete">
     <div class="modal__bg js-modal-close"></div>
-    <div class="modal__content">
+    <div class="modal__content_delete">
       <form action="{{ route('post.delete', ['id' => $post->id]) }}" method="post">
         <div class="w-100 text-center p-3">
           <p>削除してよろしいですか？</p>
