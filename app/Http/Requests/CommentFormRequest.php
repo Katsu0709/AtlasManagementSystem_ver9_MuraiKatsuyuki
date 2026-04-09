@@ -32,8 +32,8 @@ class CommentFormRequest extends FormRequest
     {
         return [
             'comment.required' => 'コメントは必ず入力してください。',
-            'comment.max' => 'コメントは文字列で入力してください。',
-            'comment.string' => 'コメントは250文字以内で入力してください。',
+            'comment.max' => 'コメントは250文字以内で入力してください。',
+            'comment.string' => ' コメントは文字列で入力してください。',
         ];
     }
 }
