@@ -20,29 +20,38 @@ class PostsController extends Controller
 {
     public function show(Request $request)
     {
-        $posts = Post::with('user', 'postComments')->withCount(['postComments', 'likes'])->get();
-        $categories = MainCategory::get();
+        $query = Post::with('user', 'postComments')->withCount(['postComments', 'likes']);
+        $main_categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new Post;
+
         if (!empty($request->keyword)) {
-            $posts = Post::with('user', 'postComments')
-                ->withCount(['postComments', 'likes'])
-                ->where('post_title', 'like', '%' . $request->keyword . '%')
-                ->orWhere('post', 'like', '%' . $request->keyword . '%')->get();
+            $sub_category = SubCategory::where('sub_category', $request->keyword)->first();
+            if ($sub_category) {
+                $query->whereHas('subCategories', function ($q) use ($sub_category) {
+                    $q->where('sub_category_id', $sub_category->id);
+                });
+            } else {
+                $query->where(function ($q) use ($request) {
+                    $q->where('post_title', 'like', '%' . $request->keyword . '%')
+                        ->orWhere('post', 'like', '%' . $request . '%');
+                });
+            }
         } else if ($request->category_word) {
-            $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->withCount(['postComments', 'likes'])->get();
+            $sub_category = SubCategory::where('sub_category', $request->category_word)->first();
+            if ($sub_category) {
+                $query->whereHas('subCategories', function ($q) use ($sub_category) {
+                    $q->where('sub_category_id', $sub_category->id);
+                });
+            }
         } else if ($request->like_posts) {
             $likes = Auth::user()->likePostId()->get('like_post_id');
-            $posts = Post::with('user', 'postComments')
-                ->withCount(['postComments', 'likes'])
-                ->whereIn('id', $likes)->get();
+            $query->whereIn('id', $likes);
         } else if ($request->my_posts) {
-            $posts = Post::with('user', 'postComments')
-                ->withCount(['postComments', 'likes'])
-                ->where('user_id', Auth::id())->get();
+            $query->where('user_id', Auth::id());
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        $posts = $query->get();
+        return view('authenticated.bulletinboard.posts', compact('posts', 'main_categories', 'like', 'post_comment'));
     }
 
     public function postDetail($post_id)
@@ -53,7 +62,7 @@ class PostsController extends Controller
 
     public function postInput()
     {
-        $main_categories = MainCategory::get();
+        $main_categories = MainCategory::with('subCategories')->get();
 
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }

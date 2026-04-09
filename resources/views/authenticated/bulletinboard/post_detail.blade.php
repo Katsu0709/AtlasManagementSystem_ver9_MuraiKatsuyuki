@@ -16,7 +16,7 @@
             <div>
               <div class="m-1">
                 @foreach($post->subCategories as $subCategory)
-                <span class="badge badge-info p-2" style="font-size:1.0rem;">{{ $subCategory->sub_category }}</span>
+                <span class="badge badge-info">{{ $subCategory->sub_category }}</span>
                 @endforeach
               </div>
             </div>

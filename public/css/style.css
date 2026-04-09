@@ -141,6 +141,11 @@ li {
   border-radius: 10px;
 }
 
+.post_username {
+  color: #999;
+  font-weight: bold;
+}
+
 .post_create_area textarea {
   resize: none;
   height: 300px;
@@ -156,8 +161,22 @@ li {
   border-radius: 10px;
 }
 
+.badge.badge-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.0rem;
+  font-weight: normal;
+}
+
 .post_bottom_area {
   justify-content: space-between;
+}
+
+.post_icon {
+  margin-top: auto;
 }
 
 .like_btn,
@@ -170,9 +189,122 @@ li {
   color: #E2254D;
 }
 
-.error_message {
-  font-size: 12px;
-  color: red;
+/* アコーディオンメニュー */
+.main-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  color: #333;
+  border-bottom: 1px solid #000;
+  list-style: none;
+  font-size: 1.2rem;
+}
+
+/* 閉じている状態：下向きの「∨」 */
+.main-category::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #666;
+  border-bottom: 2px solid #666;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+  margin-right: 5px;
+}
+
+/* 開いている状態：上向きの「∧」 */
+.category-group[open] .main-category::after {
+  transform: rotate(-135deg);
+  margin-top: 5px;
+}
+
+.sub-category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sub-category-item {
+  width: 90%;
+}
+
+.sub-category-link {
+  display: block;
+  padding: 5px 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.0rem;
+}
+
+.sub-category-link:hover {
+  border-bottom: 1px solid #333;
+  color: #333;
+  text-decoration: none;
+}
+
+.btn.btn-pink {
+  background-color: PaleVioletRed;
+  color: white;
+  margin-right: 1px;
+  height: 45px;
+}
+
+.btn.btn-orange {
+  background-color: #F8B400;
+  color: white;
+  margin-left: 1px;
+  height: 45px;
+}
+
+.post_btn.btn,
+.btn.btn-orange,
+.btn.btn-pink {
+  border-radius: 10px;
+}
+
+.btn.btn-orange:hover,
+.btn.btn-pink:hover {
+  color: white;
+  font-weight: bold;
+}
+
+.search_area,
+.post_btn.btn {
+  height: 40px;
+}
+
+.search_box {
+  width: 70%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #ECF1F6;
+  border-color: #D3D3D3;
+}
+
+.search_btn {
+  width: 30%;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.post_btn.btn,
+.search_btn.btn,
+.badge.badge-info {
+  background-color: #03AAD2;
+}
+
+.category_search {
+  color: #333;
+  font-size: 1.1rem;
 }
 
 /* 掲示板 詳細画面 */
