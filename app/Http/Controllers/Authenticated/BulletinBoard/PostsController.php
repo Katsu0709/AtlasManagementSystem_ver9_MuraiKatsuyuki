@@ -26,15 +26,16 @@ class PostsController extends Controller
         $post_comment = new Post;
 
         if (!empty($request->keyword)) {
+            $keyword = $request->keyword;
             $sub_category = SubCategory::where('sub_category', $request->keyword)->first();
             if ($sub_category) {
                 $query->whereHas('subCategories', function ($q) use ($sub_category) {
                     $q->where('sub_category_id', $sub_category->id);
                 });
             } else {
-                $query->where(function ($q) use ($request) {
-                    $q->where('post_title', 'like', '%' . $request->keyword . '%')
-                        ->orWhere('post', 'like', '%' . $request . '%');
+                $query->where(function ($q) use ($keyword) {
+                    $q->where('post_title', 'like', '%' . $keyword . '%')
+                        ->orWhere('post', 'like', '%' . $keyword . '%');
                 });
             }
         } else if ($request->category_word) {
