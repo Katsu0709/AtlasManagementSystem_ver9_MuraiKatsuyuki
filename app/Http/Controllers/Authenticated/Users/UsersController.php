@@ -16,16 +16,18 @@ class UsersController extends Controller
 
     public function showUsers(Request $request)
     {
+
         $keyword = $request->keyword;
         $category = $request->category;
         $updown = $request->updown;
+
         $gender = $request->sex;
         $role = $request->role;
-        $subjects = null; // ここで検索時の科目を受け取る
+        $subjects = $request->subjects;
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
-        $subjects = Subjects::all();
-        return view('authenticated.users.search', compact('users', 'subjects'));
+        $subject_lists = Subjects::all();
+        return view('authenticated.users.search', compact('users', 'subject_lists'));
     }
 
     public function userProfile($id)
@@ -39,7 +41,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($request->user_id);
 
-        if (!empty($request->subject)) {
+        if (!empty($request->subjects)) {
             $user->subjects()->sync($request->subjects);
         } else {
             $user->subjects()->detach();

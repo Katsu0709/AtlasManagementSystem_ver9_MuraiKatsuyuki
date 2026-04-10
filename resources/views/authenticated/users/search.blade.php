@@ -58,7 +58,7 @@
           <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
         </div>
         <div>
-          <lavel>カテゴリ</lavel>
+          <label>カテゴリ</label>
           <select form="userSearchRequest" name="category">
             <option value="name">名前</option>
             <option value="id">社員ID</option>
@@ -92,6 +92,16 @@
             </div>
             <div class="selected_engineer">
               <label>選択科目</label>
+              <div class="selected_subject">
+                @foreach($subject_lists as $subject)
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="subjects[]" value="{{ $subject->id }}" id="subject_{{ $subject->id }}" form="userSearchRequest">
+                  <label class="form-check-label" for="subject_{{ $subject->id }}">
+                    {{ $subject->subject }}
+                  </label>
+                </div>
+                @endforeach
+              </div>
             </div>
           </div>
         </div>
