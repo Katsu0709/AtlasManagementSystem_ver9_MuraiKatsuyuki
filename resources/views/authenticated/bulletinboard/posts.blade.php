@@ -35,9 +35,9 @@
       <div class="m-4">
         <a href="{{ route('post.input') }}" class="post_btn btn btn-info w-100 mb-3">投稿</a>
         <form action="{{ route('post.show') }}" method="get" id="postSearchRequest">
-          <div class="search_area d-flex my-2">
+          <div class="search_box d-flex my-2">
             <input type="text" class="search_box" placeholder="キーワードを検索" name="keyword">
-            <button class="search_btn btn btn-info text-white" type="submit">検索</button>
+            <button class="post_search_btn btn btn-info text-white" type="submit">検索</button>
           </div>
           <div class="d-flex my-4">
             <input type="submit" name="like_posts" class="btn btn-pink w-50" value="いいねした投稿" form="postSearchRequest">
