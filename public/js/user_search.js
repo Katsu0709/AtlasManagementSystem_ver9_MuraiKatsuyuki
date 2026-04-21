@@ -1,24 +1,27 @@
 $(function () {
-  $('.search_conditions').click(function () {
-    $('.search_conditions_inner').slideToggle();
-  });
+  $('.search_conditions_toggle, .subject_edit_btn').on('click', function () {
 
-  $('.subject_edit_btn').click(function () {
-    $('.subject_inner').slideToggle();
-  });
+    $(this).next().slideToggle();
 
-  $('.search_conditions_toggle').click(function () {
-    // 中身をスライドで開閉
-    $('.search_conditions_inner').slideToggle();
-
-    // クラスを付け替えて矢印の向きを変える
     $(this).toggleClass('open');
+
+    const arrow = $(this).find('.arrow');
     if ($(this).hasClass('open')) {
-      $('.arrow').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+      arrow.removeClass('fa-chevron-down').addClass('fa-chevron-up');
     } else {
-      $('.arrow').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+      arrow.removeClass('fa-chevron-up').addClass('fa-chevron-down');
     }
   });
+
+  $('#reset-button').click(function () {
+    const form = $('#userSearchRequest');
+    if (form.length) {
+      form[0].reset();
+      form.find('input[type="radio"], input[type="checkbox"]').prop('checked', false);
+      form.find('select').prop('selectedIndex', 0);
+    }
+  });
+
 
   $('#reset-button').click(function () {
     const form = $('#userSearchRequest'); // フォームのID

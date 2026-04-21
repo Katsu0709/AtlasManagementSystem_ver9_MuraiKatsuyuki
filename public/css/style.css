@@ -496,7 +496,24 @@ li {
 
 
 .subject_edit_btn {
-  font-size: 12px;
-  color: #0000FF;
+  color: #03AAD2;
   cursor: pointer;
+}
+
+.subject_flex_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.subject_label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.subject_label input {
+  border-radius: 5px;
+  transform: scale(0.9);
 }
