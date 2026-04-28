@@ -517,3 +517,80 @@ li {
   border-radius: 5px;
   transform: scale(0.9);
 }
+
+.bg-secondary-subtle {
+  background-color: #eee;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.modal__bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding-left: 300px;
+  padding-right: 300px;
+  border-radius: 5px;
+  text-align: start;
+}
+
+.modal__btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.calendar_table {
+  width: 1200px;
+  margin: auto;
+  table-layout: fixed;
+}
+
+.reserve-button {
+  width: 1250px;
+}
+
+.calendar-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 100%;
+  padding-top: 15px;
+}
+
+.reserve-item {
+  width: 75px;
+  height: 25px;
+  font-size: 15px;
+  display: block;
+  padding: 0;
+}
+
+.calendar-select-box {
+  width: 100px;
+  height: 25px;
+  font-size: 15px;
+  padding: 0;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
