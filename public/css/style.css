@@ -572,8 +572,8 @@ li {
   justify-content: center;
   align-items: center;
   width: 130px;
-  height: 100%;
-  padding-top: 15px;
+  height: 110px;
+  padding-top: 0;
 }
 
 .reserve-item {
@@ -593,4 +593,15 @@ li {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+/* 奇数行（1, 3, 5...行目）の背景色を指定 */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #fff !important;
+  /* ここに好きな色を入れてください（例：ごく薄い青） */
+}
+
+/* 偶数行（2, 4, 6...行目）を白に固定したい場合 */
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: #e6f7ff;
 }

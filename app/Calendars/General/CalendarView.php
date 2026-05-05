@@ -31,8 +31,8 @@ class CalendarView
     $html[] = '<th>水</th>';
     $html[] = '<th>木</th>';
     $html[] = '<th>金</th>';
-    $html[] = '<th>土</th>';
-    $html[] = '<th>日</th>';
+    $html[] = '<th class="text-primary">土</th>';
+    $html[] = '<th class="text-danger">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -44,13 +44,14 @@ class CalendarView
       foreach ($days as $day) {
         $startDay = $this->carbon->copy()->format("Y-m-01");
         $toDay = \Carbon\Carbon::today()->format("Y-m-d");
+
         $dayClass = '';
         if ($day->everyDay()) {
           $date = \Carbon\Carbon::parse($day->everyDay());
           if ($date->isSaturday()) {
-            $dayClass = 'text-primary'; // 土曜日は青
+            $dayClass = 'text-primary pt-0'; // 土曜日は青
           } elseif ($date->isSunday()) {
-            $dayClass = 'text-danger';  // 日曜日は赤
+            $dayClass = 'text-danger pt-0';  // 日曜日は赤
           }
         }
 
@@ -62,9 +63,9 @@ class CalendarView
         }
 
         if ($startDay <= $day->everyDay() && $toDay > $day->everyDay()) {
-          $html[] = '<td class="calendar-td bg-secondary-subtle ' . $dayClass . '">';
+          $html[] = '<td class="calendar-td bg-secondary-subtle pt-0 ' . $dayClass . '">';
         } else {
-          $html[] = '<td class="calendar-td ' . $day->getClassName() . ' ' . $dayClass . '">';
+          $html[] = '<td class="calendar-td pt-0 ' . $day->getClassName() . ' ' . $dayClass . '">';
         }
 
         $html[] = '<div class="calendar-content">';
@@ -80,7 +81,7 @@ class CalendarView
           else if ($reservePart == 3) $partName = "リモ3部";
 
           if ($toDay > $day->everyDay()) {
-            $html[] = '<p class="p-0">' . $partName . '参加</p>';
+            $html[] = '<p class="p-0 text-dark m-0">' . $partName . '参加</p>';
           } else {
             $html[] = '<button type="button"
                     class="btn btn-danger p-0 js-modal-open reserve-item"
@@ -90,7 +91,7 @@ class CalendarView
           }
         } else {
           if ($toDay > $day->everyDay()) {
-            $html[] = '<p class="text-dark" style="font-size:16px">受付終了</p>';
+            $html[] = '<p class="text-dark m-0" style="font-size:16px">受付終了</p>';
           } else {
             $html[] = '<div class="calendar-item">' . $day->selectPart($day->everyDay());
           }
