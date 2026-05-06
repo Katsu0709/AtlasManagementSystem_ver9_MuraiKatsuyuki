@@ -81,19 +81,19 @@ class CalendarView
           else if ($reservePart == 3) $partName = "リモ3部";
 
           if ($toDay > $day->everyDay()) {
-            $html[] = '<p class="p-0 text-dark m-0">' . $partName . '参加</p>';
+            $html[] = '<p class="pt-3 text-dark m-0">' . $partName . '参加</p>';
           } else {
             $html[] = '<button type="button"
-                    class="btn btn-danger p-0 js-modal-open reserve-item"
+                    class="btn btn-danger p-0 mt-3 js-modal-open reserve-item"
                     data-date="' . $day->everyDay() . '"
                     data-part="' . $partName . '"
                     data-id="' . $reserveData->id . '">' . $partName . '</button>';
           }
         } else {
           if ($toDay > $day->everyDay()) {
-            $html[] = '<p class="text-dark m-0" style="font-size:16px">受付終了</p>';
+            $html[] = '<p class="text-dark pt-3 m-0" style="font-size:16px">受付終了</p>';
           } else {
-            $html[] = '<div class="calendar-item">' . $day->selectPart($day->everyDay());
+            $html[] = '<div class="calendar-item pt-3">' . $day->selectPart($day->everyDay());
           }
         }
 

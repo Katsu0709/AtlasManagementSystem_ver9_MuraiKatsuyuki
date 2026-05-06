@@ -15,7 +15,7 @@
 
   <div class="modal js-modal">
     <div class="modal__bg js-modal-close"></div>
-    <div class="modal__content">
+    <div class="reserve_modal_content">
       <p>予約日：<span id="modal-date"></span></p>
       <p>時間：<span id="modal-part"></span></p>
       <p>上記の予約をキャンセルしてもよろしいですか？</p>

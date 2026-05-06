@@ -176,10 +176,10 @@
           </div>
         </div>
 
-        <div class="mt-5 text-right relative z-10">
+        <div class="mt-3 text-right relative z-10">
           <input type="submit" class="btn btn-primary register_btn" value="新規登録" onclick="return confirm('登録してよろしいですか？')">
         </div>
-        <div class="text-center">
+        <div class="text-center my-0">
           <a href="{{ route('loginView') }}">ログインはこちら</a>
         </div>
 
