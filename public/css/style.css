@@ -19,7 +19,7 @@ li {
 /* サイドバー */
 .sidebar {
   width: 200px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
   padding: 10px;
@@ -348,17 +348,13 @@ li {
 
 .comment_area p,
 .comment_area input {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .comment_area textarea {
   height: 300px;
   resize: none;
-}
-
-.comment_container span {
-  font-size: 12px;
 }
 
 .post_status span {

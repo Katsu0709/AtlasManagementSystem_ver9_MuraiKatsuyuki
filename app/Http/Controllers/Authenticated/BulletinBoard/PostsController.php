@@ -51,7 +51,7 @@ class PostsController extends Controller
         } else if ($request->my_posts) {
             $query->where('user_id', Auth::id());
         }
-        $posts = $query->get();
+        $posts = $query->latest()->get();
         return view('authenticated.bulletinboard.posts', compact('posts', 'main_categories', 'like', 'post_comment'));
     }
 
@@ -125,7 +125,7 @@ class PostsController extends Controller
 
     public function myBulletinBoard()
     {
-        $posts = Auth::user()->posts()->get();
+        $posts = Auth::user()->posts()->latest()->get();
         $like = new Like;
         return view('authenticated.bulletinboard.post_myself', compact('posts', 'like'));
     }
@@ -133,7 +133,7 @@ class PostsController extends Controller
     public function likeBulletinBoard()
     {
         $like_post_id = Like::with('users')->where('like_user_id', Auth::id())->get('like_post_id')->toArray();
-        $posts = Post::with('user')->whereIn('id', $like_post_id)->get();
+        $posts = Post::with('user')->whereIn('id', $like_post_id)->latest()->get();
         $like = new Like;
         return view('authenticated.bulletinboard.post_like', compact('posts', 'like'));
     }

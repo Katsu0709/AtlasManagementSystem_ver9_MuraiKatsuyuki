@@ -4,11 +4,14 @@
       <div class="m-3 p-1 detail_container rounded-lg">
         <div class="p-3">
           @if($errors->has('post_title') || $errors->has('post_body'))
-          <div class="text-danger">
-            <ul class="mb-0">
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
+          <div class="error_message">
+            <ul class="mb-0" style="color: red; list-style: none; padding-left: 0;">
+              @if($errors->has('post_title'))
+              <li class="h6">{{ $errors->first('post_title') }}</li>
+              @endif
+              @if($errors->has('post_body'))
+              <li class="h6">{{ $errors->first('post_body') }}</li>
+              @endif
             </ul>
           </div>
           @endif
@@ -47,12 +50,12 @@
           <div class="comment_container">
             <span class="m-1">コメント</span>
             @foreach($post->postComments as $comment)
-            <div class="comment_area border-top">
-              <p>
+            <div class="comment_area border-top m-1">
+              <p class="pt-2">
                 <span>{{ $comment->commentUser($comment->user_id)->over_name }}</span>
                 <span>{{ $comment->commentUser($comment->user_id)->under_name }}</span>さん
               </p>
-              <p>{{ $comment->comment }}</p>
+              <p class="py-2">{{ $comment->comment }}</p>
             </div>
             @endforeach
           </div>
@@ -62,9 +65,9 @@
     <div class="w-50 p-3">
       <div class="comment_container border m-5 rounded-lg">
         <div class="comment_area p-3">
-          @error('comment')
-          <div class="text-danger">{{ $message }}</div>
-          @enderror
+          @if($errors->first('comment'))
+          <span class="error_message h6" style="color: red;">{{ $errors->first('comment') }}</span>
+          @endif
           <p class="my-1">コメントする</p>
           <textarea class="w-100 form-control" rows="12" name="comment" form="commentRequest"></textarea>
           <div class="d-flex justify-content-end">
