@@ -33,7 +33,7 @@ class SelectIds implements DisplayUsers
 
     if (!empty($subjects)) {
       $users->whereHas('subjects', function ($q) use ($subjects) {
-        $q->whereIn('subjects.id', (array)$subjects);
+        $q->whereIn('subjects.id', $subjects);
       })
         ->where('role', 4);
     }

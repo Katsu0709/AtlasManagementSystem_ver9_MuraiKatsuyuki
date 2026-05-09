@@ -31,9 +31,10 @@ class SelectNameDetails implements DisplayUsers
         $q->whereIn('sex', $gender)
           ->whereIn('role', $role);
       });
+
     if (!empty($subjects)) {
       $users->whereHas('subjects', function ($q) use ($subjects) {
-        $q->where('subjects.id', $subjects);
+        $q->whereIn('subjects.id', $subjects);
       })
         ->where('role', 4);
     }

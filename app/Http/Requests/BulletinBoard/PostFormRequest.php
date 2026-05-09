@@ -26,7 +26,7 @@ class PostFormRequest extends FormRequest
         return [
             'post_title' => 'required|string|max:100',
             'post_body' => 'required|string|max:2000',
-            'post_category_id' => 'required|exists:sub_categories,id',
+            'post_category_id' => $this->has('post_id') ? 'nullable|exists:sub_categories,id' : 'required|exists:sub_categories,id',
         ];
     }
 

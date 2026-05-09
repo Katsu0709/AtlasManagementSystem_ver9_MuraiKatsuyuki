@@ -77,8 +77,8 @@ class PostsController extends Controller
             'post' => $request->post_body,
         ]);
 
-        if ($request->sub_category_id) {
-            $post->subCategories()->attach($request->sub_category_id);
+        if ($request->post_category_id) {
+            $post->subCategories()->attach($request->post_category_id);
         }
 
         return redirect()->route('post.show');
